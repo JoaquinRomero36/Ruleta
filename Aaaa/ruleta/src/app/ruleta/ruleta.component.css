@@ -1,0 +1,57 @@
+#roulette-container {
+  width: 250px;
+  height: 250px;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  background: radial-gradient(circle, #2c3e50 100%);
+}
+/* Fondo animado */
+.background {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg, /* angulos de baras | 90=recto vertical  180=recto horizontal 135=inclinado */
+    #2c3e50,
+    #2c3e50 30px,
+    #34495e 30px,
+    #34495e 60px
+  );
+  background-size: 220% 220%; /* ajusta velocidad de las barras*/
+  animation: moveBackground 60s linear infinite;
+  z-index: 0;
+}
+
+/* Animación del movimiento */
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* Capa del contenido encima del fondo */
+.ruleta-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centra orizontalmente */
+  justify-content: center;   /* centra verticalmente */
+  gap: 20px;                 /* espacio entre la ruleta y btn */
+}
+
+.button-default {
+  background-color: #34495e;
+  padding: 0.8em 1.5em;      
+  border: 2px solid #23313f;
+  border-radius: 16px;       
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}

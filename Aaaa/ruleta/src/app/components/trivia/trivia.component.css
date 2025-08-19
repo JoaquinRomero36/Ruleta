@@ -1,0 +1,25 @@
+/* Fondo animado */
+.background {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg, /* angulos de baras | 90=recto vertical  180=recto horizontal 135=inclinado */
+    #d1cc72,
+    #d1cc72 30px,
+    #707c39 30px,
+    #707c39 60px
+  );
+  background-size: 220% 220%; /* ajusta velocidad de las barras*/
+  animation: moveBackground 60s linear infinite;
+  z-index: 0;
+}
+
+/* Animación del movimiento */
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}

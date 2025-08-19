@@ -1,0 +1,14 @@
+    <h2>memotest</h2>
+    <div class="memotest-container">
+  <h2>🎰 Mini Slot Machine</h2>
+
+  <div class="slots">
+    <div class="slot" *ngFor="let slot of slots">
+      <img *ngIf="slot" [src]="slot" alt="icon" />
+    </div>
+  </div>
+
+  <button (click)="spin()" [disabled]="spinning">
+    {{ spinning ? 'Girando...' : 'Girar 🎲' }}
+  </button>
+</div>
