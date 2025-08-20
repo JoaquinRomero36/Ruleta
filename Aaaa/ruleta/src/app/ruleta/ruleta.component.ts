@@ -63,31 +63,33 @@ export class RuletaComponent implements AfterViewInit {
     this.roulette.onstop = (section: any) => {
     //  console.log(section)
       Swal.fire({
-        title: section.value,
-        icon: 'success',
-        confirmButtonText: "Aceptar chalenge"
-      })
-      if(section.value == "Jackpot"){
-        this.router.navigate(['/jackpot']);
+  title: section.value,
+  icon: 'success',
+  confirmButtonText: "Aceptar challenge"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (section.value == "Jackpot") {
+          this.router.navigate(['/jackpot']);
+        }
+        if (section.value == "Memotest") {
+          this.router.navigate(['/memotest']);
+        }
+        if (section.value == "Trivia IPF") {
+          this.router.navigate(['/trivia', true]);
+        }
+        if (section.value == "Trivia Evento") {
+          this.router.navigate(['/trivia', false]);
+        }
+        if (section.value == "Chalenge Baile") {
+          //this.router.navigate(['/baile']);
+          alert('a bailar! oea');
+        }
       }
-      if(section.value == "Memotest"){
-        this.router.navigate(['/memotest']);
-      }
-      if(section.value == "Trivia IPF"){
-        this.router.navigate(['/trivia', true]);
-      }
-      if(section.value == "Trivia Evento"){
-        this.router.navigate(['/trivia', false]);
-      }
-      if(section.value == "Chalenge Baile"){
-        //this.router.navigate(['/baile']);
-        alert('a bailar! oea')
-
-      }
+    });
     };
   }
 
   spin() {
-    const result = this.roulette.roll(); // random automático
+     this.roulette.roll(); // random automático
   }
 }
