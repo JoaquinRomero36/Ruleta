@@ -1,36 +1,36 @@
 <div class="background">  
     <br>
     <br>
-<div class="hud">
-  <div class="hud-item">
-     Tiempo: <span [class.low]="timeLeft <= 10">{{ timeLeft }}s</span>
+  <div class="hud">
+    <div class="hud-item">
+      Tiempo: <span [class.low]="timeLeft <= 10">{{ timeLeft }}s</span>
+    </div>
+    <div class="hud-item">
+      Movimientos: <b>{{ moves }}</b>
+    </div>
+    <div class="hud-item">
+      Pares: <b>{{ matchesFound }}</b> / {{ totalPairs }}
+    </div>
   </div>
-  <div class="hud-item">
-     Movimientos: <b>{{ moves }}</b>
-  </div>
-  <div class="hud-item">
-     Pares: <b>{{ matchesFound }}</b> / {{ totalPairs }}
-  </div>
-</div>
 
-<div class="board" [class.locked]="busy">
-  <div
-    class="card"
-    *ngFor="let card of deck; index as i"
-    (click)="flipCard(i)"
-    [class.matched]="card.matched"
-  >
-    <div class="card-inner" [class.flipped]="card.flipped || card.matched">
-      <!-- reverso -->
-      <div class="card-face card-back">
-        <div class="pattern"></div>
-        <span class="logo">?</span>
-      </div>
-      <!-- frente -->
-      <div class="card-face card-front">
-        <img [src]="card.image" alt="img" />
+  <div class="board" [class.locked]="busy">
+    <div
+      class="card"
+      *ngFor="let card of deck; index as i"
+      (click)="flipCard(i)"
+      [class.matched]="card.matched"
+    >
+      <div class="card-inner" [class.flipped]="card.flipped || card.matched">
+        <!-- reverso -->
+        <div class="card-face card-back">
+          <div class="pattern"></div>
+          <span class="logo">?</span>
+        </div>
+        <!-- frente -->
+        <div class="card-face card-front">
+          <img [src]="card.image" alt="img" />
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
