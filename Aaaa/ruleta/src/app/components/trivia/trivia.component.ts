@@ -37,7 +37,12 @@ private readonly router = inject(Router);
 
   selectAnswer(ans: any) {
     this.selectedAnswer = ans;
-
+    if(ans.correct){
+            this.correct.play()
+    }
+    else{
+            this.incorrect.play()
+    }
     // mostramos el color por 1s antes de verificar
     setTimeout(() => {
       this.verificar(ans.correct);
@@ -83,7 +88,6 @@ if(coorecto){
     }
     else{
       this.tracker = this.tracker + 1
-      this.correct.play()
     }
 }
 else{
@@ -92,7 +96,6 @@ else{
     }
     else{
     this.tracker =  this.tracker + 1
-    this.incorrect.play()
     }
 }
 console.log(this.respuestasCorrectas)
