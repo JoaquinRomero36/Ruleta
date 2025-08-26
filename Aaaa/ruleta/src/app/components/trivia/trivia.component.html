@@ -1,3 +1,32 @@
-<div class="background">  
-    <h2>trivia</h2>
+<div class="background">
+  <div class="trivia-container">
+
+     <!-- Timer visual -->
+    <div class="timer">
+      <span>Tiempo restante: {{ timeLeft }}s</span>
+    </div>
+
+    @if(preguntas.length > 0){
+      @for(pre of preguntas; track $index){
+        @if(tracker == $index){
+          <div class="card">
+            <h2 class="question">{{ pre.qestion }}</h2>
+            <div class="answers">
+              @for(ans of pre.answers; track $index){
+                <button 
+                  class="answer-btn"
+                  [ngClass]="{
+                    'correct': selectedAnswer === ans && ans.correct,
+                    'incorrect': selectedAnswer === ans && !ans.correct
+                  }"
+                  (click)="selectAnswer(ans)">
+                  {{ ans.text }}
+                </button>
+              }
+            </div>
+          </div>
+        }
+      }
+    }
+  </div>
 </div>

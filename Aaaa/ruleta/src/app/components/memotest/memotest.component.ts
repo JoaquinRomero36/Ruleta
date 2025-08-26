@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 interface Card {
   id: number;
@@ -18,6 +19,7 @@ interface Card {
 })
 export class MemotestComponent implements OnInit, OnDestroy {
 
+  private readonly router = inject(Router);
   
   flipSound = new Audio('aud/flipcard.mp3');
   matchSound = new Audio('aud/correctCard.mp3');
@@ -174,16 +176,16 @@ export class MemotestComponent implements OnInit, OnDestroy {
         title: '¡Ganaste! 🎉',
         html: `Completaste los ${this.totalPairs} pares<br>en <b>${this.timeLimit - this.timeLeft}s</b> con <b>${this.moves}</b> movimientos`,
         icon: 'success',
-        confirmButtonText: 'Reiniciar'
-      }).then(() => this.startGame());
+        confirmButtonText: 'Volver a la ruleta'
+      }).then(() => this.router.navigate(['/ruleta']));
     } else {
       this.looseSound.play()
       Swal.fire({
-        title: '⏰ Se acabó el tiempo',
+        title: 'Se acabó el tiempo',
         text: `Encontraste ${this.matchesFound} de ${this.totalPairs} pares`,
         icon: 'error',
-        confirmButtonText: 'Reintentar'
-      }).then(() => this.startGame());
+        confirmButtonText: 'Volver a la ruleta'
+      }).then(() => this.router.navigate(['/ruleta']));
     }
   }
 
