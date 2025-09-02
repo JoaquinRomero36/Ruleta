@@ -107,8 +107,8 @@ finJuego(){
   Swal.fire({  titleText: '¡Ganaste!',
                text : "Contestaste bien " +this.respuestasCorrectas+ " de 5 preguntas", 
                icon: 'success', 
-               confirmButtonText: 'Volver a la ruleta'}).then(() => {
-    this.router.navigate(['/ruleta']);
+               confirmButtonText: 'Volver a la página principal'}).then(() => {
+    this.router.navigate(['/landing']);
   })
     }
     else{
@@ -116,8 +116,8 @@ finJuego(){
       Swal.fire({ titleText: 'Perdiste!', 
                   text : "Contestaste bien " +this.respuestasCorrectas+ " de 5 preguntas",  
                   icon: 'error', 
-                  confirmButtonText: 'Volver a la ruleta'}).then(() => {
-    this.router.navigate(['/ruleta']);
+                  confirmButtonText: 'Volver a la página principal'}).then(() => {
+    this.router.navigate(['/landing']);
   })
     }
   }

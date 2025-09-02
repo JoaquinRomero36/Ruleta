@@ -34,12 +34,11 @@ export class MemotestComponent implements OnInit, OnDestroy {
     '/img/sandia.png',
     '/img/kiwi.png',
     '/img/frutilla.png',
-    '/img/lemon.png',
   ];
 
   // Paraetros del juego
-  readonly totalPairs = 7;      
-  readonly timeLimit = 45;      // seg
+  readonly totalPairs = 6;      
+  readonly timeLimit = 30;      // seg
 
   deck: Card[] = [];
   moves = 0;
@@ -176,16 +175,16 @@ export class MemotestComponent implements OnInit, OnDestroy {
         title: '¡Ganaste! 🎉',
         html: `Completaste los ${this.totalPairs} pares<br>en <b>${this.timeLimit - this.timeLeft}s</b> con <b>${this.moves}</b> movimientos`,
         icon: 'success',
-        confirmButtonText: 'Volver a la ruleta'
-      }).then(() => this.router.navigate(['/ruleta']));
+        confirmButtonText: 'Volver a la principal'
+      }).then(() => this.router.navigate(['/landing']));
     } else {
       this.looseSound.play()
       Swal.fire({
         title: 'Se acabó el tiempo',
         text: `Encontraste ${this.matchesFound} de ${this.totalPairs} pares`,
         icon: 'error',
-        confirmButtonText: 'Volver a la ruleta'
-      }).then(() => this.router.navigate(['/ruleta']));
+        confirmButtonText: 'Volver a página principal'
+      }).then(() => this.router.navigate(['/landing']));
     }
   }
 

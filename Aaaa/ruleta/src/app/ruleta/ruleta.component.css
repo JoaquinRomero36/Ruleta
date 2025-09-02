@@ -1,6 +1,4 @@
 #roulette-container {
-  width: 250px;
-  height: 250px;
   margin: auto;
   border-radius: 50%;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
@@ -8,16 +6,19 @@
 }
 /* Fondo animado */
 .background {
-  position: absolute;
-  inset: 0;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: repeating-linear-gradient(
-    135deg, /* angulos de baras | 90=recto vertical  180=recto horizontal 135=inclinado */
+    135deg,
     #2c3e50,
     #2c3e50 30px,
     #34495e 30px,
     #34495e 60px
   );
-  background-size: 220% 220%; /* ajusta velocidad de las barras*/
+  background-size: 220% 220%;
   animation: moveBackground 60s linear infinite;
   z-index: 0;
 }
@@ -32,6 +33,27 @@
   }
 }
 
+.title-text {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Poppins", Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+  margin-bottom: 1rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
 /* Capa del contenido encima del fondo */
 .ruleta-content {
   position: relative;
@@ -39,10 +61,18 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;       /* centra orizontalmente */
+  align-items: center;       /* centra horizontalmente */
   justify-content: center;   /* centra verticalmente */
   gap: 20px;                 /* espacio entre la ruleta y btn */
 }
+
+/* Botón toggle arriba a la izquierda */
+.toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
 
 .button-default {
   background-color: #34495e;
@@ -54,4 +84,18 @@
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s;
+}
+
+.input-email {
+  background-color: #34495e;        /* mismo color que el botón */
+  color: white;                     /* texto blanco */
+  border: 2px solid #23313f;        /* mismo borde que el botón */
+  border-radius: 16px;              /* bordes redondeados iguales */
+  padding: 0.8em 1em;               /* espacio interno */
+  font-size: 1em;
+  font-weight: bold;
+  outline: none;                    /* quitamos el borde por defecto */
+  transition: transform 0.2s, box-shadow 0.2s; /* efecto suave */
+  width: 30%;                      /* ocupa todo el contenedor */
+  box-sizing: border-box;           /* padding incluido en width */
 }

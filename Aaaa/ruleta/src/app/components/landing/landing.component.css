@@ -1,0 +1,58 @@
+
+/* --- Contenedor general --- */
+.landing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #91adeb, #c0a6ec, #cca4f1);
+  color: rgb(30, 29, 31);
+}
+
+
+/* --- Hero section --- */
+.hero {
+  flex: 1;
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 3rem;
+  max-width: 650px;
+}
+
+/* --- Botones --- */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.buttons button {
+  background: white;
+  color: #202022;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}

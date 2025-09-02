@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Roulette from '@theblindhawk/roulette';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-ruleta',
   standalone: true,
@@ -12,24 +13,50 @@ import { Router } from '@angular/router';
 })
 export class RuletaComponent implements AfterViewInit {
   private roulette!: any;
-   private readonly router = inject(Router);
+  private readonly router = inject(Router);
 
   ngAfterViewInit(): void {
     this.roulette = new Roulette({
       container: 'roulette-container',
       sections: [
-      { value: 'Trivia IPF', background: '#e74c3c', font: 'Arial', font_size: 16, font_color: 'white' },   
-      { value: 'Memotest', background: '#f1c40f', font: 'Arial', font_size: 16, font_color: '#2c3e50' }, 
-      { value: 'Chalenge Baile', background: '#8e44ad', font: 'Arial', font_size: 16, font_color: 'white' },    
-      { value: 'Trivia Evento', background: '#f39c12', font: 'Arial', font_size: 16, font_color: '#2c3e50' }, 
-      { value: 'Jackpot', background: '#2ecc71', font: 'Arial', font_size: 16, font_color: 'white' }, 
-    ],
+        {
+          background: '#ffffff',
+          src: '/img/manzana.png',
+          radius: 50
+        },
+        {
+          background: '#ffffff ',
+          src: '/img/banana.png',
+          radius: 50
+        },
+        {
+          background: '#ffffff',
+          src: '/img/kiwi.png',
+          radius: 50
+        },
+        {
+          background: '#ffffff',
+          src: '/img/frutilla.png',
+          radius: 50
+        },
+        {
+          background: '#ffffff',
+          src: '/img/naranja.png',
+          radius: 50
+        }
+        ,
+        {
+          background: '#ffffff',
+          src: '/img/lemon.png',
+          radius: 50
+        }
+      ],
       board: {
-        radius: 240,
+        radius: 230,
         padding: 20,
         border: {
           width: 6,
-          color: '#222', // color borde
+          color: '#222'
         },
         doughnut: { radius: 20, color: '#ffffffff' }
       },
@@ -42,54 +69,61 @@ export class RuletaComponent implements AfterViewInit {
       },
       settings: {
         roll: {
-          duration: 1000, //tiempo en milisegundos | 1000 = 1s
+          duration: 3000,
           landing: 'edge',
-          delay: 0,
+          delay: 0
         },
-        font: 'Poppins',
-        font_size: 14,
-        font_color: '#fff',
         border: {
           width: 1,
-          color: '#363232ff' //borde interno
+          color: '#363232ff'
         }
       },
       audio: {
-      src: 'pop.mp3',
-      volume: 1.0,
-      play: { every: { milliseconds: 1, sections: 0.1} }
-    },
-  });
-    this.roulette.onstop = (section: any) => {
-    //  console.log(section)
-      Swal.fire({
-  title: section.value,
-  icon: 'success',
-  confirmButtonText: "Aceptar challenge"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (section.value == "Jackpot") {
-          this.router.navigate(['/jackpot']);
-        }
-        if (section.value == "Memotest") {
-          this.router.navigate(['/memotest']);
-        }
-        if (section.value == "Trivia IPF") {
-          this.router.navigate(['/trivia', true]);
-        }
-        if (section.value == "Trivia Evento") {
-          this.router.navigate(['/trivia', false]);
-        }
-        if (section.value == "Chalenge Baile") {
-          //this.router.navigate(['/baile']);
-          alert('a bailar! oea');
-        }
+        src: 'pop.mp3',
+        volume: 1.0,
+        play: { every: { milliseconds: 1, sections: 0.1 } }
       }
     });
+
+    this.roulette.onstop = (section: any) => {
+      Swal.fire({
+
+        imageUrl: section.src,
+        icon: 'success',
+        confirmButtonText: "Aceptar challenge"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (section.value == "Jackpot") {
+            this.router.navigate(['/jackpot']);
+          }
+          if (section.value == "Memotest") {
+            this.router.navigate(['/memotest']);
+          }
+          if (section.value == "Trivia IPF") {
+            this.router.navigate(['/trivia', true]);
+          }
+          if (section.value == "Trivia Evento") {
+            this.router.navigate(['/trivia', false]);
+          }
+          if (section.value == "Chalenge Baile") {
+            Swal.fire({
+              title: "¡Es tu turno de bailar!",
+              icon: 'info'
+            });
+          }
+        }
+      });
     };
   }
 
   spin() {
-     this.roulette.roll(); // random automático
+    this.roulette.roll();
   }
+
+togler: boolean = true
+
+toglear(){
+  this.togler = !this.togler
+}
+
 }
