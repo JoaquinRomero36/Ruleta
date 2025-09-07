@@ -21,12 +21,14 @@ private readonly router = inject(Router);
   winSound = new Audio('aud/win2.mp3');
   looseSound = new Audio('aud/lose2.mp3');
 
-  triviaFlag: boolean = true; 
+  adult: boolean = true;
+
+  triviaFlag: boolean = false; 
   tracker: number = 0;
   respuestasCorrectas : number = 0
 
-   // Timer visual (30s)
-  timeLeft: number = 30;
+  // Timer visual (30s)
+  timeLeft: number = 3;
   interval: any;
 
   selectedAnswer: any = null;
@@ -51,73 +53,132 @@ private readonly router = inject(Router);
   }
 
 ngOnInit(): void {
-
- this.preguntas = PREGUNTAS
-      .sort(() => Math.random() - 0.5) // shuffle
-      .slice(0, 5);
-  if(this.triviaFlag){
-    console.log("trivia ypf")
-  }
-  else{
-  console.log("trivia eventos")
-  }
-
-  this.startTimer()
+this.preguntas = PREGUNTAS
+    .filter(p => p.adult === this.adult)
+    .sort(() => Math.random() - 0.5) // shuffle
+    .slice(0, 3);
 }
 
 startTimer() {
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        clearInterval(this.interval);
-        this.finJuego()
-      }
-    }, 1000);
-  }
+  // Reiniciamos cualquier timer previo
+  clearInterval(this.interval);
+  this.timeLeft = 15;
+
+  this.interval = setInterval(() => {
+    if (this.timeLeft > 0) {
+      this.timeLeft--;
+    } else {
+      // tiempo terminado, marcamos como incorrecta
+      clearInterval(this.interval);
+      this.incorrect.play();
+      this.verificar(false);
+    }
+  }, 1000);
+}
 
 
 preguntas : pregunta[] = []
 
  
-verificar(coorecto: boolean){
-if(coorecto){
-    this.respuestasCorrectas = this.respuestasCorrectas +1
-    if(this.tracker > 3 || this.tracker == this.preguntas.length-1){
-      this.finJuego()
-    }
-    else{
-      this.tracker = this.tracker + 1
-    }
-}
-else{
-    if(this.tracker > 3 || this.tracker == this.preguntas.length-1){
-      this.finJuego()
-    }
-    else{
-    this.tracker =  this.tracker + 1
-    }
-}
-console.log(this.respuestasCorrectas)
+verificar(coorecto: boolean) {
+  // Paramos el timer de la pregunta actual
+  clearInterval(this.interval);
+
+  if (coorecto) {
+    this.respuestasCorrectas++;
+    this.correct.play();
+  } else {
+    this.incorrect.play();
+  }
+
+  // Pasamos a la siguiente pregunta o terminamos
+  if (this.tracker >= this.preguntas.length - 1) {
+    this.finJuego();
+  } else {
+    this.tracker++;
+    // Reiniciamos el timer para la siguiente pregunta
+    this.startTimer();
+  }
+
+  console.log(this.respuestasCorrectas);
 }
 
 finJuego(){
-  if(this.respuestasCorrectas > 2){
+  if(this.respuestasCorrectas > 1){
     this.winSound.play()
-  Swal.fire({  titleText: '¡Ganaste!',
-               text : "Contestaste bien " +this.respuestasCorrectas+ " de 5 preguntas", 
-               icon: 'success', 
-               confirmButtonText: 'Volver a la página principal'}).then(() => {
-    this.router.navigate(['/landing']);
+
+      Swal.fire({ titleText: '¡Ganaste!', 
+                  icon: 'success',  
+                  showConfirmButton: false,  
+                  timer: 5000,              
+                  timerProgressBar: true,
+                  width: '1600px',
+                  padding: '80px',
+                      customClass: {
+                        popup: 'swal2-popup',
+                        title: 'swal2-title',
+                        confirmButton: 'swal2-confirm'
+                      }
+          }).then(() => {
+            this.timeLeft = 15
+        this.triviaFlag = false;
   })
     }
     else{
       this.looseSound.play()
       Swal.fire({ titleText: 'Perdiste!', 
-                  text : "Contestaste bien " +this.respuestasCorrectas+ " de 5 preguntas",  
                   icon: 'error', 
-                  confirmButtonText: 'Volver a la página principal'}).then(() => {
-    this.router.navigate(['/landing']);
+                  showConfirmButton: false,  
+                  timer: 5000,              
+                  timerProgressBar: true,
+                  width: '1600px',
+                  padding: '80px',
+                  customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    confirmButton: 'swal2-confirm'
+                  }
+                }).then(() => {
+                  this.timeLeft = 15
+                  this.triviaFlag = false;
+  })
+    }
+  }
+  adultSwitch(adult: boolean){
+    if(!adult){
+      this.adult = false
+        Swal.fire({  titleText: 'Recordá que las apuestas en juegos de azar son solo para matores de 18 años', 
+               icon: 'info',  
+               showConfirmButton: true, 
+               confirmButtonText: "COMENZAR", 
+               width: '1600px',
+               padding: '80px',
+                  customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    confirmButton: 'swal2-confirm'
+                  }
+      }).then(() => {
+        this.startTimer();
+    this.triviaFlag = !this.triviaFlag;
+  })
+    }
+    else{
+      this.adult = true
+        Swal.fire({  titleText: '¿Cuánto conocés de los juegos de azar?', 
+               icon: 'info',  
+               showConfirmButton: true, 
+               confirmButtonText: "COMENZAR", 
+               width: '1600px',
+               padding: '80px',
+                  customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    confirmButton: 'swal2-confirm'
+                  }
+      }).then(() => {
+        this.startTimer();
+    this.triviaFlag = !this.triviaFlag;
   })
     }
   }

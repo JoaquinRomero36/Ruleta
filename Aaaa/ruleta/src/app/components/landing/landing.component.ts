@@ -19,7 +19,7 @@ memotest(){
   this.router.navigate(['/memotest']);
 }
 trivia(){
-  this.router.navigate(['/trivia', true]);
+  this.router.navigate(['/trivia']);
 }
 
 }

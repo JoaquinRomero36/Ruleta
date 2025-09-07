@@ -1,6 +1,6 @@
 <div class="background">
   <div class="trivia-container">
-
+    @if(triviaFlag){
      <!-- Timer visual -->
     <div class="timer">
       <span>Tiempo restante: {{ timeLeft }}s</span>
@@ -27,6 +27,18 @@
           </div>
         }
       }
+    }      
     }
-  </div>
+    @else {
+      <div class="age-container">
+        <h1>¿Cuántos años tenés?</h1>
+        <p>Seleccioná tu categoría:</p>
+
+        <div class="buttons">
+          <button class="age-btn" (click)="adultSwitch(true)">Soy mayor de edad</button>
+          <button class="age-btn" (click)="adultSwitch(false)">soy menor de edad</button>
+        </div>
+      </div>
+    }
+  </div>      
 </div>

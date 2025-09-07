@@ -56,3 +56,45 @@
   transition: all 0.25s ease;
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
+
+@media (min-height: 2000px) {
+
+  .hero h2 {
+  font-size: 5.5rem;
+  font-weight: 800;
+  max-width: 900px;
+  margin-bottom: 3.5rem;
+  text-shadow: 0 9px 18px rgba(0, 0, 0, 0.25);
+}
+
+.hero {
+  flex: 1;
+  text-align: center;
+  padding: 16rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.buttons button {
+  background: white;
+  color: #202022;
+  font-size: 6.1rem;
+  font-weight: bold;
+  padding: 2rem;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 16px 35px rgba(0,0,0,0.2);
+}
+}

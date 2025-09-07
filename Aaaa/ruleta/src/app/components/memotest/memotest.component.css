@@ -1,16 +1,24 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
 /* Fondo animado */
 .background {
   position: absolute; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centrado vertical */
+  align-items: center;     /* centrado horizontal */
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100%;
   background: repeating-linear-gradient(
     135deg,
-    #6e1e1e,
-    #6e1e1e 30px,
-    #8b1f1f 30px,
-    #8b1f1f 60px
+     #ffffff,
+    #ffffff 120px,
+    #ec9c7d 120px,
+    #ec9c7d 240px
   );
   background-size: 220% 220%;
   animation: moveBackground 60s linear infinite;
@@ -24,12 +32,13 @@
 }
 
 :host {
-  display: block;
+  display: flex;
   padding: 16px;
-  color: #eaecee;
+  color: #000000;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   background: radial-gradient(1200px 600px at 50% -20%, #1f2a38 0%, #0f141a 60%, #0a0e12 100%);
-  min-height: 100dvh;
+  min-height: 100vh;
+  flex-direction: column;
   box-sizing: border-box;
 }
 
@@ -50,7 +59,7 @@
   text-align: center;
   backdrop-filter: blur(6px);
 }
-.hud .low { color: #ff6961; font-weight: 700; }
+.hud .low { color: #6198ff; font-weight: 700; }
 
 .btn {
   justify-self: end;
@@ -69,7 +78,7 @@
 
 /* TABLERO */
 .board {
-  margin: 0 auto;
+  margin: auto;
   display: grid;
   gap: 6px; /* menos espacio entre cartas */
   grid-template-columns: repeat(4, minmax(50px, 1fr)); /* cartas más chicas */
@@ -121,55 +130,84 @@
 
 /* Reverso de la carta */
 .card-back {
-  background: linear-gradient(135deg, #2c3e50, #34495e);
-  border: 2px solid #22303d;
+  background-image: url('/cards/cartaEspalda.jpeg');
+  background-size: cover;   /* que cubra toda la carta */
+  background-position: center;
+  border: 2px solid #ff3c01;
+  border-radius: 12px;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
 }
-.card-back .pattern {
-  position: absolute;
-  inset: 0;
-  opacity: .12;
-  background: repeating-linear-gradient(
-    45deg,
-    #ffffff,
-    #ffffff 6px,
-    #000000 6px,
-    #000000 12px
-  );
-  mix-blend-mode: overlay;
-}
-.card-back .logo {
-  font-size: 2rem;
-  font-weight: 900;
-  color: rgba(255,255,255,.9);
-  text-shadow: 0 2px 6px rgba(0,0,0,.25);
-}
+
 
 /* Frente de la carta */
 .card-front {
   transform: rotateY(180deg);
-  background: #f5f6f7;
-  border: 2px solid #1f2b36;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+  background: #fe682d;
+  border: 2px solid #ff3c01;
 }
 .card-front img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(255, 255, 255, 0.35));
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* 💻 Notebook (1366px - 1600px de ancho) */
+@media (min-width: 1200px) and (max-width: 1600px) {
   .board {
-    grid-template-columns: repeat(3, minmax(40px, 1fr));
-    grid-auto-rows: minmax(60px, auto);
+    max-width: 900px; /* tablero un poco más grande */
+    gap: 10px;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    grid-auto-rows: minmax(160px, auto);
+  }
+
+  .card-back .logo {
+    font-size: 3rem;
+  }
+  .hud {
+    max-width: 1000px;
+    font-size: 1.2rem;
   }
 }
 
-@media (max-width: 480px) {
+/* 📺 TV gigante vertical (portrait +2000px de alto) */
+@media (min-height: 2000px) {
   .board {
-    grid-template-columns: repeat(2, minmax(30px, 1fr));
-    grid-auto-rows: minmax(50px, auto);
+    max-width: 2400px;        /* tablero enorme */
+    gap: 20px;
+    grid-template-columns: repeat(4, minmax(350px, 1fr)); /* cartas grandes */
+    grid-auto-rows: minmax(450px, auto);
+  }
+
+  .card {
+    border-radius: 20px;
+  }
+
+  .hud {
+    max-width: 2000px;
+    font-size: 4.5rem;
+    gap: 30px;
+  }
+  .hud-item {
+    padding: 24px 32px;
+    border-radius: 20px;
   }
 }
+
+/* sweet alert */
+.swal-popup {
+    width: 1600px ;   /* bien ancho en la TV */
+    font-size: 48px ; /* texto principal gigante */
+    border-radius: 30px;
+    padding: 80px;
+  }
+
+  .swal-title {
+    font-size: 64px ;
+    margin-bottom: 40px ;
+  }
+
+  .swal-button {
+    font-size: 48px ;
+    padding: 30px 80px ;
+    border-radius: 20px;
+  }

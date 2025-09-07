@@ -28,17 +28,19 @@ export class MemotestComponent implements OnInit, OnDestroy {
   looseSound = new Audio('aud/lose2.mp3');
 
   private readonly ALL_IMAGES: string[] = [
-    '/img/banana.png',
-    '/img/manzana.png',
-    '/img/naranja.png',
-    '/img/sandia.png',
-    '/img/kiwi.png',
-    '/img/frutilla.png',
+    '/cards/carta1.jpeg',
+    '/cards/carta2.jpeg',
+    '/cards/carta3.jpeg',
+    '/cards/carta4.jpeg',
+    '/cards/carta5.jpeg',
+    '/cards/carta6.jpeg',
+    '/cards/carta7.jpeg',
+    '/cards/carta8.jpeg'
   ];
 
   // Paraetros del juego
-  readonly totalPairs = 6;      
-  readonly timeLimit = 30;      // seg
+  readonly totalPairs = 8;      
+  readonly timeLimit = 40;      // seg
 
   deck: Card[] = [];
   moves = 0;
@@ -80,11 +82,8 @@ export class MemotestComponent implements OnInit, OnDestroy {
       }))
     );
 
-    // 2s de “preview” opcional
-    // this.previewAndHide(1500);
-
-    // incicializa timer
-    this.startTimer();
+    // 3s de “preview” opcional
+    this.previewAndHide(3000, () => this.startTimer());
   }
 
   private startTimer(): void {
@@ -172,18 +171,35 @@ export class MemotestComponent implements OnInit, OnDestroy {
     if (win) {
       this.winSound.play()
       Swal.fire({
-        title: '¡Ganaste! 🎉',
-        html: `Completaste los ${this.totalPairs} pares<br>en <b>${this.timeLimit - this.timeLeft}s</b> con <b>${this.moves}</b> movimientos`,
+        title: '¡GANASTE!',
         icon: 'success',
-        confirmButtonText: 'Volver a la principal'
+        showConfirmButton: false,  
+        timer: 5000,              
+        timerProgressBar: true,
+        width: '1600px',
+        padding: '80px',
+        customClass: {
+          popup: 'swal2-popup',
+          title: 'swal2-title',
+          confirmButton: 'swal2-confirm'
+        }
       }).then(() => this.router.navigate(['/landing']));
     } else {
       this.looseSound.play()
       Swal.fire({
-        title: 'Se acabó el tiempo',
-        text: `Encontraste ${this.matchesFound} de ${this.totalPairs} pares`,
+        title: 'FUERA DE TIEMPO!',
+       // text: `Encontraste ${this.matchesFound} de ${this.totalPairs} pares`,
         icon: 'error',
-        confirmButtonText: 'Volver a página principal'
+        showConfirmButton: false,  
+        timer: 5000,               
+        timerProgressBar: true,
+        width: '1600px',
+        padding: '80px',
+        customClass: {
+          popup: 'swal2-popup',
+          title: 'swal2-title',
+          confirmButton: 'swal2-confirm'
+        }
       }).then(() => this.router.navigate(['/landing']));
     }
   }
@@ -205,10 +221,14 @@ export class MemotestComponent implements OnInit, OnDestroy {
     return arr;
   }
 
-  // Vista previa opcional: muestra 1.5s todas las cartas y las tapa
-  private previewAndHide(ms: number): void {
-    this.deck.forEach(c => (c.flipped = true));
-    setTimeout(() => this.deck.forEach(c => (c.flipped = false)), ms);
-  }
+  // Vista previa opcional: muestra 3s todas las cartas y las tapa
+private previewAndHide(ms: number, callback?: () => void): void {
+  this.deck.forEach(c => (c.flipped = true));
+  setTimeout(() => {
+    this.deck.forEach(c => (c.flipped = false));
+    if (callback) callback();
+  }, ms);
+}
+
 
 }

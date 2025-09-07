@@ -12,5 +12,5 @@ export const routes: Routes = [
     { path : "ruleta", component: RuletaComponent},
     {path: "jackpot", component: JackpotComponent},
     { path : "memotest", component: MemotestComponent},
-    {path: "trivia/:tipo", component: TriviaComponent},
+    {path: "trivia", component: TriviaComponent},
 ];

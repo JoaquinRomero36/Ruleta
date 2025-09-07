@@ -16,6 +16,8 @@ export class RuletaComponent implements AfterViewInit {
   private readonly router = inject(Router);
 
   ngAfterViewInit(): void {
+     const container = document.getElementById('roulette-container');
+  const radius = container ? container.offsetWidth / 2 : 230; // 230px por defecto
     this.roulette = new Roulette({
       container: 'roulette-container',
       sections: [
@@ -52,7 +54,7 @@ export class RuletaComponent implements AfterViewInit {
         }
       ],
       board: {
-        radius: 230,
+        radius: radius,
         padding: 20,
         border: {
           width: 6,
@@ -120,7 +122,7 @@ export class RuletaComponent implements AfterViewInit {
     this.roulette.roll();
   }
 
-togler: boolean = true
+togler: boolean = false
 
 toglear(){
   this.togler = !this.togler

@@ -1,19 +1,19 @@
 /* Fondo animado clean */
 .background {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   inset: 0;
   background: repeating-linear-gradient(
-    135deg, 
-    #ffffff,        /* blanco */
-    #ffffff 40px,   /* ancho de barra */
-    #e6f0f7 40px,   /* celeste super suave */
-    #e6f0f7 80px
+    135deg,
+    #ffffff,
+    #ffffff 120px,
+    #e6f0f7 120px,
+    #e6f0f7 240px
   );
-  background-size: 200% 200%; 
+  background-size: 200% 200%;
   animation: moveBackground 60s linear infinite;
   display: flex;
   justify-content: center;
@@ -21,7 +21,6 @@
   padding: 2rem;
 }
 
-/* Animación del movimiento */
 @keyframes moveBackground {
   from { background-position: 0 0; }
   to { background-position: 100% 100%; }
@@ -30,16 +29,16 @@
 /* Contenedor principal */
 .trivia-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 600px; /* default */
   z-index: 1;
 }
 
-/* Tarjeta de la pregunta */
+/* Tarjeta */
 .card {
   background: #ffffff;
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   text-align: center;
   animation: fadeIn 0.6s ease;
 }
@@ -51,12 +50,12 @@
 
 .question {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #222;
 }
 
-/* Botones de respuestas */
+/* Botones */
 .answers {
   display: flex;
   flex-direction: column;
@@ -69,7 +68,7 @@
   border: none;
   background: #f0f3f7;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -78,7 +77,6 @@
   background: #e0e6ed;
 }
 
-/* Estados correctos/incorrectos */
 .answer-btn.correct {
   background: #4caf50 !important;
   color: white;
@@ -92,7 +90,117 @@
 .timer {
   text-align: center;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1rem;
   color: #2c3e50;
+}
+
+/* ============================= */
+/* 💻 Notebook (1366px) */
+/* ============================= */
+@media (min-width: 1200px) and (max-width: 1600px) {
+  .trivia-container {
+    max-width: 700px;
+  }
+  .question {
+    font-size: 2rem;
+  }
+  .answer-btn {
+    font-size: 1.2rem;
+    padding: 1.2rem;
+  }
+  .timer {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================= */
+/* 📺 TV vertical (2K-4K en portrait) */
+/* ============================= */
+@media (min-height: 2000px) {
+  .trivia-container {
+    max-width: 80%;   /* ocupa casi todo el ancho */
+  }
+  .card {
+    padding: 6rem 4rem;
+    border-radius: 40px;
+  }
+  .question {
+    font-size: 5rem;  /* gigante */
+    margin-bottom: 4rem;
+    line-height: 1.2;
+  }
+  .answers {
+    gap: 3rem;
+  }
+  .answer-btn {
+    font-size: 3rem;
+    padding: 3rem;
+    border-radius: 30px;
+  }
+  .timer {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/*Inicio pregunando edad*/
+/* Contenedor de selección de edad */
+.age-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 4rem;
+}
+
+.age-container h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.age-container p {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  color: #2c3e50;
+}
+
+/* Botones de edad */
+.age-container .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.age-btn {
+  font-size: 3rem;
+  padding: 3rem 6rem;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #ffffff, #ffeaea);
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+
+/* Ajustes para pantallas grandes 4K vertical */
+@media (min-height: 2000px) {
+  .age-container h1 {
+    font-size: 6rem;
+  }
+  .age-container p {
+    font-size: 4rem;
+  }
+  .age-btn {
+    font-size: 3.5rem;
+    padding: 4rem 8rem;
+  }
 }

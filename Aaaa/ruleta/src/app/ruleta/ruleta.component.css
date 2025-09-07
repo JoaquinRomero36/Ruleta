@@ -1,9 +1,13 @@
 #roulette-container {
-  margin: auto;
+  width: 80vw; /* 80% del ancho de la ventana */
+  height: 80vw; /* Mantiene la proporción cuadrada */
+  max-width: 500px; /* Tamaño máximo */
+  max-height: 500px; /* Tamaño máximo */
   border-radius: 50%;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   background: radial-gradient(circle, #2c3e50 100%);
 }
+
 /* Fondo animado */
 .background {
   position: fixed; 
@@ -98,4 +102,24 @@
   transition: transform 0.2s, box-shadow 0.2s; /* efecto suave */
   width: 30%;                      /* ocupa todo el contenedor */
   box-sizing: border-box;           /* padding incluido en width */
+}
+
+/* Pantallas grandes tipo TV (ej: +2000px de ancho) */
+@media screen and (min-width: 2000px) {
+  #roulette-container {
+    width: 90vw;   /* más chico proporcionalmente */
+    height: 40vw;
+    max-width: 3000px;  /* permitimos crecer más */
+    max-height: 3000px;
+  }
+
+  .title-text {
+    font-size: 8rem; /* texto más grande */
+  }
+
+  .button-default, .input-email {
+    font-size: 8.5rem; 
+    padding: 1em 2em;
+    border-radius: 5%;
+  }
 }
