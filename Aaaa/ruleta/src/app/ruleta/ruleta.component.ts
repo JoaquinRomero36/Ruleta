@@ -23,34 +23,34 @@ export class RuletaComponent implements AfterViewInit {
       sections: [
         {
           background: '#ffffff',
-          src: '/img/manzana.png',
-          radius: 50
+          src: 'https://loteriadelchubut.com.ar/wp-content/uploads/2023/08/final_logo_nuevo_telebingo-removebg-preview.png',
+          radius: 300
         },
         {
           background: '#ffffff ',
-          src: '/img/banana.png',
-          radius: 50
+          src: 'https://loteriadelchubut.com.ar/wp-content/uploads/2023/08/logo-deportivo.jpg',
+          radius: 300
         },
         {
           background: '#ffffff',
-          src: '/img/kiwi.png',
-          radius: 50
+          src: 'https://loteriadelchubut.com.ar/wp-content/uploads/2023/08/Quiniela.png',
+          radius: 267
         },
         {
           background: '#ffffff',
-          src: '/img/frutilla.png',
-          radius: 50
+          src: 'https://loteriadelchubut.com.ar/wp-content/uploads/2023/08/download.png',
+          radius: 264
         },
         {
           background: '#ffffff',
-          src: '/img/naranja.png',
-          radius: 50
+          src: 'https://loteriadelchubut.com.ar/wp-content/uploads/2023/07/sorteo-brinco-1jpg-1.webp',
+          radius: 263
         }
         ,
         {
           background: '#ffffff',
-          src: '/img/lemon.png',
-          radius: 50
+          src: 'https://loteriadelchubut.com.ar/wp-content/uploads/2023/07/telekino-logo-huevo-removebg-preview.png',
+          radius: 300
         }
       ],
       board: {
@@ -64,20 +64,20 @@ export class RuletaComponent implements AfterViewInit {
       },
       arrow: {
         element: 'sharp',
-        width: 30,
-        height: 40,
-        padding: 10,
-        color: '#242020ff'
+        width: 140,
+        height: 200,
+        padding: 50,
+        color: '#f8430cff'
       },
       settings: {
         roll: {
-          duration: 3000,
+          duration: 6000,
           landing: 'edge',
           delay: 0
         },
         border: {
           width: 1,
-          color: '#363232ff'
+          color: '#000000ff'
         }
       },
       audio: {
@@ -91,8 +91,7 @@ export class RuletaComponent implements AfterViewInit {
       Swal.fire({
 
         imageUrl: section.src,
-        icon: 'success',
-        confirmButtonText: "Aceptar challenge"
+        confirmButtonText: "Texto editable"
       }).then((result) => {
         if (result.isConfirmed) {
           if (section.value == "Jackpot") {

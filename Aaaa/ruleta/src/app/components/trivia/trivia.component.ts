@@ -53,10 +53,18 @@ private readonly router = inject(Router);
   }
 
 ngOnInit(): void {
-this.preguntas = PREGUNTAS
+this.CreateMAtch()
+}
+
+CreateMAtch(){
+  this.tracker = 0;
+  this.respuestasCorrectas = 0;
+  this.preguntas = PREGUNTAS
     .filter(p => p.adult === this.adult)
     .sort(() => Math.random() - 0.5) // shuffle
     .slice(0, 3);
+    console.log("--------------")
+    console.log(this.preguntas)
 }
 
 startTimer() {
@@ -122,6 +130,7 @@ finJuego(){
           }).then(() => {
             this.timeLeft = 15
         this.triviaFlag = false;
+        this.CreateMAtch()
   })
     }
     else{
@@ -141,17 +150,18 @@ finJuego(){
                 }).then(() => {
                   this.timeLeft = 15
                   this.triviaFlag = false;
+                 this.CreateMAtch()
   })
     }
   }
   adultSwitch(adult: boolean){
     if(!adult){
       this.adult = false
-        Swal.fire({  titleText: 'Recordá que las apuestas en juegos de azar son solo para matores de 18 años', 
-               icon: 'info',  
+        Swal.fire({  titleText: 'Recordá que las apuestas en juegos de azar son solo para mayores de 18 años',   
                showConfirmButton: true, 
                confirmButtonText: "COMENZAR", 
                width: '1600px',
+               color: '#3ca935',
                padding: '80px',
                   customClass: {
                     popup: 'swal2-popup',
@@ -165,10 +175,10 @@ finJuego(){
     }
     else{
       this.adult = true
-        Swal.fire({  titleText: '¿Cuánto conocés de los juegos de azar?', 
-               icon: 'info',  
+        Swal.fire({  titleText: '¿Cuánto conocés de los juegos de azar?',   
                showConfirmButton: true, 
                confirmButtonText: "COMENZAR", 
+               color: '#3ca935',
                width: '1600px',
                padding: '80px',
                   customClass: {

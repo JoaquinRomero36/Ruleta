@@ -52,14 +52,14 @@ html, body {
   align-items: center;
 }
 .hud-item {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgb(255, 255, 255);
+  border: 3px solid rgb(255, 81, 0);
   border-radius: 12px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   text-align: center;
   backdrop-filter: blur(6px);
 }
-.hud .low { color: #6198ff; font-weight: 700; }
+.hud .low { color: #f50a0a; font-weight: 700; }
 
 .btn {
   justify-self: end;
@@ -164,8 +164,8 @@ html, body {
     font-size: 3rem;
   }
   .hud {
-    max-width: 1000px;
-    font-size: 1.2rem;
+    max-width: 1020px;
+    font-size: 1.3rem;
   }
 }
 
@@ -183,12 +183,13 @@ html, body {
   }
 
   .hud {
-    max-width: 2000px;
-    font-size: 4.5rem;
+    max-width: 2030px;
+    font-size: 4.7rem;
     gap: 30px;
   }
   .hud-item {
-    padding: 24px 32px;
+    width: 567px;
+    padding: 26px 30px;
     border-radius: 20px;
   }
 }

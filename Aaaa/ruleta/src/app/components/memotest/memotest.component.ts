@@ -83,7 +83,7 @@ export class MemotestComponent implements OnInit, OnDestroy {
     );
 
     // 3s de “preview” opcional
-    this.previewAndHide(3000, () => this.startTimer());
+    this.previewAndHide(5000, () => this.startTimer());
   }
 
   private startTimer(): void {
