@@ -10,14 +10,14 @@
     135deg,
     #ffffff,
     #ffffff 120px,
-    #ec9c7d 120px,
-    #ec9c7d 240px
+    #e2fff4 120px,
+    #e2fff4 240px
   );
   background-size: 200% 200%;
   animation: moveBackground 60s linear infinite;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   padding: 2rem;
 }
 
@@ -28,6 +28,7 @@
 
 /* Contenedor principal */
 .trivia-container {
+  margin-top: 300px;
   width: 100%;
   max-width: 600px;
   z-index: 1;
@@ -52,7 +53,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #222;
+  color: #161616;
 }
 
 /* Botones */
@@ -127,14 +128,14 @@
   }
   .question {
     font-size: 6rem;
-    margin-bottom: 4rem;
+    margin-bottom: 18rem;
     line-height: 1.2;
   }
   .answers {
-    gap: 3rem;
+    gap: 8rem;
   }
   .answer-btn {
-        border: solid;
+    border: solid;
     border-color: #3ca935;
     font-size: 4rem;
     padding: 3rem;
@@ -158,10 +159,12 @@
   width: 100%;
   padding: 4rem;
   background: transparent; /* 🚀 Esto evita que tape el fondo */
+  margin-top: 400px;
 }
 
 .age-container h1 {
-  font-size: 5rem;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: #222;  /* solo texto, sin fondo */

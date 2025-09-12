@@ -172,7 +172,7 @@ html, body {
 /* 📺 TV gigante vertical (portrait +2000px de alto) */
 @media (min-height: 2000px) {
   .board {
-    max-width: 2400px;        /* tablero enorme */
+    max-width: 1915px;        /* tablero enorme */
     gap: 20px;
     grid-template-columns: repeat(4, minmax(350px, 1fr)); /* cartas grandes */
     grid-auto-rows: minmax(450px, auto);
@@ -183,13 +183,14 @@ html, body {
   }
 
   .hud {
-    max-width: 2030px;
+    margin-left: 40px;
+    max-width: 2090px;
     font-size: 4.7rem;
-    gap: 30px;
+    gap: 32px;
   }
   .hud-item {
-    width: 567px;
-    padding: 26px 30px;
+    width: 566px;
+    padding: 20px 22px;
     border-radius: 20px;
   }
 }

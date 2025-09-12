@@ -66,7 +66,7 @@ export class RuletaComponent implements AfterViewInit {
         element: 'sharp',
         width: 140,
         height: 200,
-        padding: 50,
+        padding: 2,
         color: '#f8430cff'
       },
       settings: {
